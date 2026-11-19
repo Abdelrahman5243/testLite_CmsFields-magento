@@ -1,0 +1,22 @@
+{
+    "name": "lite/module-cms-fields",
+    "description": "Ultra-light headless CMS for Magento 2: pages, sections and fields built in the admin and served through GraphQL.",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.1.0||~8.2.0||~8.3.0",
+        "magento/framework": "^103.0",
+        "magento/module-backend": "*",
+        "magento/module-catalog": "*",
+        "magento/module-cms": "*",
+        "magento/module-graph-ql": "*",
+        "magento/module-store": "*",
+        "magento/module-ui": "*"
+    },
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": {
+            "Lite\\CmsFields\\": ""
+        }
+    }
+}

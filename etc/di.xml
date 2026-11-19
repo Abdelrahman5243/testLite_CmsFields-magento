@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Lite\CmsFields\Model\ImageUploader" type="Magento\Catalog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">lite_cms/tmp</argument>
+            <argument name="basePath" xsi:type="string">lite_cms</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+                <item name="webp" xsi:type="string">webp</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpg" xsi:type="string">image/jpg</item>
+                <item name="jpeg" xsi:type="string">image/jpeg</item>
+                <item name="gif" xsi:type="string">image/gif</item>
+                <item name="png" xsi:type="string">image/png</item>
+                <item name="webp" xsi:type="string">image/webp</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Lite\CmsFields\Model\ResourceModel\Page">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Lite\CmsFields\Model\ImageUploader</argument>
+        </arguments>
+    </type>
+    <type name="Lite\CmsFields\Controller\Adminhtml\Page\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Lite\CmsFields\Model\ImageUploader</argument>
+        </arguments>
+    </type>
+    <virtualType name="Lite\CmsFields\Model\ResourceModel\Page\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">lite_cms_page</argument>
+            <argument name="resourceModel" xsi:type="string">Lite\CmsFields\Model\ResourceModel\Page</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="lite_cms_page_listing_data_source" xsi:type="string">Lite\CmsFields\Model\ResourceModel\Page\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

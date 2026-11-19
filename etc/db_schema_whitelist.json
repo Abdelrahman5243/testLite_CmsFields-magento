@@ -1,0 +1,18 @@
+{
+    "lite_cms_page": {
+        "column": {
+            "entity_id": true,
+            "identifier": true,
+            "store_id": true,
+            "is_active": true,
+            "content": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "LITE_CMS_PAGE_IDENTIFIER_STORE_ID": true,
+            "LITE_CMS_PAGE_STORE_ID_STORE_STORE_ID": true
+        }
+    }
+}

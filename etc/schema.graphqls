@@ -1,0 +1,51 @@
+type Query {
+    liteCmsPage(
+        identifier: String! @doc(description: "Identifier of the Lite CMS page.")
+    ): LiteCmsPage
+        @resolver(class: "Lite\\CmsFields\\Model\\Resolver\\Page")
+        @doc(description: "Return a Lite CMS page for the current store view, falling back to the default (all store views) content.")
+        @cache(cacheIdentity: "Lite\\CmsFields\\Model\\Resolver\\Identity")
+}
+
+type LiteCmsPage @doc(description: "A headless CMS page made of sections and fields.") {
+    identifier: String @doc(description: "Page identifier.")
+    sections: [LiteCmsSection] @doc(description: "Sections in display order.")
+}
+
+type LiteCmsSection @doc(description: "A group of fields.") {
+    key: String @doc(description: "Section key, unique within the page.")
+    label: String @doc(description: "Admin label of the section.")
+    fields: [LiteCmsField] @doc(description: "Fields in display order.")
+}
+
+type LiteCmsField @doc(description: "A content field. Only the property matching `type` is filled.") {
+    key: String @doc(description: "Field key, unique within its section or repeater item.")
+    type: String @doc(description: "One of: text, textarea, wysiwyg, image, link, select, boolean, date, repeater, product, category, cms_block.")
+    text: String @doc(description: "Value of text, textarea, select and date (YYYY-MM-DD) fields.")
+    html: String @doc(description: "Rendered HTML of a wysiwyg field.")
+    boolean: Boolean @doc(description: "Value of a boolean field.")
+    image: LiteCmsImage @doc(description: "Value of an image field.")
+    link: LiteCmsLink @doc(description: "Value of a link field.")
+    skus: [String] @doc(description: "Product SKUs of a product field.")
+    category_id: Int @doc(description: "Category ID of a category field.")
+    category_uid: ID @doc(description: "Category UID of a category field, usable in core category queries.")
+    block_identifier: String @doc(description: "CMS block identifier of a cms_block field.")
+    items: [LiteCmsRepeaterItem] @doc(description: "Items of a repeater field.")
+}
+
+type LiteCmsImage @doc(description: "An uploaded image.") {
+    url: String @doc(description: "Full media URL.")
+    alt: String
+    title: String
+    caption: String
+}
+
+type LiteCmsLink @doc(description: "A link.") {
+    url: String
+    label: String
+    target: String @doc(description: "Link target, e.g. _self or _blank.")
+}
+
+type LiteCmsRepeaterItem @doc(description: "One item of a repeater field.") {
+    fields: [LiteCmsField] @doc(description: "Fields of the item.")
+}

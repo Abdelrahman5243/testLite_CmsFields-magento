@@ -1,0 +1,22 @@
+.admin__field.lcb-wrap > .admin__field-control { float: none; margin-left: 0; width: 100%; }
+.lcb-section, .lcb-field, .lcb-item { background: #fff; border: 1px solid #d6d6d6; border-radius: 2px; margin: 0 0 10px; padding: 10px; }
+.lcb-section { background: #f8f8f8; border-color: #adadad; padding: 14px; }
+.lcb-item { background: #fbfbfb; }
+.lcb-head { align-items: center; display: flex; gap: 8px; margin-bottom: 10px; }
+.lcb-field > .lcb-head { margin-bottom: 8px; }
+.lcb-head .admin__control-text, .lcb-head .admin__control-select { flex: 1 1 0; min-width: 0; width: auto; }
+.lcb-head .lcb-type { flex: 0 0 150px; }
+.lcb-item-title { flex: 1; font-weight: 600; }
+.lcb-handle { color: #777; cursor: move; font-size: 18px; line-height: 1; padding: 4px 2px; user-select: none; }
+.lcb-value { display: flex; flex-wrap: wrap; gap: 8px; }
+.lcb-value > .admin__control-text, .lcb-value > .admin__control-textarea, .lcb-value > .lcb-items, .lcb-value > .lcb-image { flex: 1 1 100%; width: 100%; }
+.lcb-value > .lcb-third { flex: 1 1 30%; }
+.lcb-image { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; }
+.lcb-image .admin__control-text { flex: 1 1 30%; width: auto; }
+.lcb-preview { border: 1px solid #d6d6d6; max-height: 70px; max-width: 120px; }
+.lcb-file { color: #555; font-size: 12px; }
+.lcb-btn { background: #eee; border: 1px solid #adadad; cursor: pointer; padding: 5px 12px; }
+.lcb-btn:hover { background: #e2e2e2; }
+.lcb-btn.lcb-remove { background: none; border: 0; color: #a00; flex: 0 0 auto; font-size: 16px; padding: 4px 6px; }
+.lcb-btn.lcb-add-section { font-weight: 600; padding: 8px 16px; }
+.lcb .ui-sortable-placeholder { border: 1px dashed #adadad; margin: 0 0 10px; visibility: visible !important; }

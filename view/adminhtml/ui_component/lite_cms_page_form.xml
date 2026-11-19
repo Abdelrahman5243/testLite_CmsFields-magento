@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">lite_cms_page_form.lite_cms_page_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Lite CMS Page</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back">
+                <url path="*/*/"/>
+                <class>back</class>
+                <label translate="true">Back</label>
+            </button>
+            <button name="save">
+                <class>save primary</class>
+                <label translate="true">Save</label>
+            </button>
+        </buttons>
+        <namespace>lite_cms_page_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>lite_cms_page_form.lite_cms_page_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="lite_cms_page_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="lite_cms/page/save"/>
+        </settings>
+        <dataProvider class="Lite\CmsFields\Model\Page\DataProvider" name="lite_cms_page_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label/>
+        </settings>
+        <field name="entity_id" formElement="hidden"/>
+        <field name="is_active" formElement="checkbox" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Active</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="identifier" formElement="input" sortOrder="20">
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Identifier</label>
+                <notice translate="true">Lowercase letters, digits, "_" and "-" only, e.g. home.</notice>
+            </settings>
+        </field>
+        <field name="store_id" formElement="select" sortOrder="30">
+            <settings>
+                <dataType>int</dataType>
+                <label translate="true">Store View</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Cms\Ui\Component\Listing\Column\Cms\Options"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="content" component="Lite_CmsFields/js/builder" formElement="input" sortOrder="40">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="uploadUrl" xsi:type="url" path="lite_cms/page/upload"/>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="lcb-wrap">true</class>
+                </additionalClasses>
+                <elementTmpl>Lite_CmsFields/builder</elementTmpl>
+                <dataType>text</dataType>
+                <label translate="true">Sections</label>
+                <labelVisible>false</labelVisible>
+            </settings>
+        </field>
+    </fieldset>
+</form>
